@@ -1,0 +1,91 @@
+
+.treecontainer {
+    padding: 50px;
+    font-size: 16px;
+    margin: 0 auto;
+    overflow: auto;
+}
+.treecontainer ul {
+    display: none;
+    list-style: none;
+    opacity: 0;
+    visibility: hidden;
+    transform: scale(0);
+    transition: 300ms visibility, 300ms transform, 300ms opacity;
+}
+.treecontainer ul li {
+    flex: 1;
+    text-align: center;
+    padding: 0 10px;
+    position: relative;
+}
+.treecontainer ul:first-child {
+    display: flex;
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1);
+}
+.treecontainer ul li input {
+    display: none;
+}
+.treecontainer ul li::before {
+    content: '';
+    position: absolute;
+    top: -1em;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: #000;
+}
+.treecontainer ul li:first-child::before {
+    left: 50%;
+}
+.treecontainer ul li:last-child::before {
+    right: 50%;
+}
+.treecontainer ul li label  {
+    display: inline-block;
+    padding: 5px 20px;
+    border: 2px solid #000;
+    border-radius: 5px;
+    margin-bottom: 2em;
+    position: relative;
+    white-space: nowrap;
+    box-sizing: border-box;
+    user-select: none;
+    cursor: pointer;
+}
+.treecontainer ul li label::after,
+.treecontainer ul li label::before {
+    content: '';
+    width: 2px;
+    position: absolute;
+    top: calc(-1em - 2px);
+    height: 1em;
+    left: 50%;
+    transition: 300ms all;
+    background: #000;
+}
+.treecontainer ul li label::after {
+    top: auto;
+    bottom: calc(-1em - 2px);
+    height: 0;
+}
+.treecontainer ul li label:last-child::after {
+    display: none;
+}
+.treecontainer >ul >li >label::before {
+    display: none;
+}
+.treecontainer ul li input:checked + label {
+    color: darkorange;
+}
+.treecontainer ul li input:checked + label::after {
+    height: 1em;
+}
+.treecontainer ul li input:checked + label + ul {
+    display: flex;
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1);
+}

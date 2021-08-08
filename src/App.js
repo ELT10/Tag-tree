@@ -42,7 +42,7 @@ const InitComponent = props => {
     <ul>
       <li className="nodeone">
         <input type="checkbox" id={"ch" + x} value={x} onClick={() => props.addChild(x)} />
-        <label htmlFor={"ch" + x} className="item"><span className="wadd">{x}</span><span className="pcount">{rando}</span></label>
+        <label htmlFor={"ch" + x} className="item"><span className="wadd">{x.slice(0, 5) + '.....' + x.slice(-5)}</span><span className="pcount">{rando}</span></label>
         <ul>
           {props.state.treeData[x] ? test(props.state.treeData[x], props.addChild, props.state.treeData) : ''}
         </ul>
@@ -56,7 +56,7 @@ const ChildComponent = props => {
   return (
     <li>
       <input type="checkbox" id={"ch" + props.id} value={props.id} onClick={() => props.addChild(props.id)} />
-      <label htmlFor={"ch" + props.id} className="item"><span className="wadd">{props.id}</span><span className="pcount">{rando}</span></label>
+      <label htmlFor={"ch" + props.id} className="item"><span className="wadd">{props.id.slice(0, 5) + '.....' + props.id.slice(-5)}</span><span className="pcount">{rando}</span></label>
       <ul>
         {props.data[props.id] ? test(props.data[props.id], props.addChild, props.data) : ''}
       </ul>

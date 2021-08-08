@@ -1,11 +1,30 @@
+/*Now the CSS*/
 
-.treecontainer {
-    padding: 50px;
-    font-size: 16px;
-    margin: 0 auto;
-    overflow: auto;
+* {margin: 0; padding: 0;}
+
+.tree{
+    position: absolute;
+    left: 1%;
 }
-.treecontainer ul {
+.tree ul {
+  float: left;
+	padding-left: 20px; position: relative;
+	transition: all 0.5s;
+	-webkit-transition: all 0.5s;
+	-moz-transition: all 0.5s;
+}
+
+.tree li {
+  align-items: center;
+  text-align: center;
+	list-style-type: none;
+	position: relative;
+	padding: 20px 0 20px 20px;
+	
+	transition: all 0.5s;
+	-webkit-transition: all 0.5s;
+	-moz-transition: all 0.5s;
+    
     display: none;
     list-style: none;
     opacity: 0;
@@ -13,79 +32,109 @@
     transform: scale(0);
     transition: 300ms visibility, 300ms transform, 300ms opacity;
 }
-.treecontainer ul li {
-    flex: 1;
-    text-align: center;
-    padding: 0 10px;
-    position: relative;
+.tree li.nodeone:first-child {
+ display: flex;
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1);
 }
-.treecontainer ul:first-child {
+    
+/*We will use ::before and ::after to draw the connectors*/
+.tree li::before, .tree li::after{
+	content: '';
+	position: absolute; left: 0; bottom: 50%;
+	border-left: 1px solid #000;
+	width: 20px; height: 50%;
+}
+.tree li::after{
+	bottom: auto; top: 50%;
+	border-top: 1px solid #000;
+}
+
+.tree ul li input:checked + label + ul li {
     display: flex;
     opacity: 1;
     visibility: visible;
     transform: scale(1);
 }
-.treecontainer ul li input {
+
+
+.tree ul li input {
     display: none;
 }
-.treecontainer ul li::before {
-    content: '';
-    position: absolute;
-    top: -1em;
-    left: 0;
-    right: 0;
-    height: 2px;
-    background: #000;
+/*We need to remove top-down connectors from elements without 
+any siblings*/
+.tree li:only-child::after, .tree li:only-child::before {
+	display: none;
 }
-.treecontainer ul li:first-child::before {
-    left: 50%;
+
+
+/*Remove space from the left of single children*/
+.tree li:only-child{ padding-left: 0;}
+
+/*Remove top connector from first child and 
+bottom connector from last child*/
+.tree li:first-child::before, .tree li:last-child::after{
+	border: none 0;
 }
-.treecontainer ul li:last-child::before {
-    right: 50%;
+
+
+/*Adding back the horizontal connector to the last nodes*/
+
+.tree li:last-child::before{
+	border-bottom: 1px solid #000;
+	border-radius: 0 0 0 5px;
+	-webkit-border-radius: 0 0 0 5px;
+	-moz-border-radius: 0 0 0 5px;
 }
-.treecontainer ul li label  {
-    display: inline-block;
-    padding: 5px 20px;
-    border: 2px solid #000;
-    border-radius: 5px;
-    margin-bottom: 2em;
-    position: relative;
-    white-space: nowrap;
-    box-sizing: border-box;
-    user-select: none;
-    cursor: pointer;
+.tree li:first-child::after{
+	border-radius: 5px 0 0 0;
+	-webkit-border-radius: 5px 0 0 0;
+	-moz-border-radius: 5px 0 0 0;
 }
-.treecontainer ul li label::after,
-.treecontainer ul li label::before {
-    content: '';
-    width: 2px;
-    position: absolute;
-    top: calc(-1em - 2px);
-    height: 1em;
-    left: 50%;
-    transition: 300ms all;
-    background: #000;
+
+.pcount{
+    padding:10px;display: inline-block;background: black;color:white;
+    }
+.wadd{
+    padding:10px;
+    }  
+/*Time to add rightward connectors from parents*/
+.tree ul ul::before{
+	content: '';
+	position: absolute; left: 0; top: 50%;
+	border-top: 1px solid #000;
+	width: 20px; height: 0;
 }
-.treecontainer ul li label::after {
-    top: auto;
-    bottom: calc(-1em - 2px);
-    height: 0;
+
+.tree li .item{
+	border: 1px solid #000;
+	text-decoration: none;
+	color: #000;
+	font-family: arial, verdana, tahoma;
+	font-size: 13px;
+	display: inline-block;
+	
+	border-radius: 0px;
+	-webkit-border-radius: 0px;
+	-moz-border-radius: 0px;
+	
+	transition: all 0.5s;
+	-webkit-transition: all 0.5s;
+	-moz-transition: all 0.5s;
 }
-.treecontainer ul li label:last-child::after {
-    display: none;
+
+/*Time for some hover effects*/
+/*We will apply the hover effect the the lineage of the element also*/
+
+.tree li .item:hover, .tree li .item:hover+ul li .item {
+	background: #c8e4f8; color: #000; border: 1px solid #94a0b4;
 }
-.treecontainer >ul >li >label::before {
-    display: none;
-}
-.treecontainer ul li input:checked + label {
-    color: darkorange;
-}
-.treecontainer ul li input:checked + label::after {
-    height: 1em;
-}
-.treecontainer ul li input:checked + label + ul {
-    display: flex;
-    opacity: 1;
-    visibility: visible;
-    transform: scale(1);
+
+/*Connector styles on hover*/
+.tree li .item:hover+ul li::after, 
+.tree li .item:hover+ul li::before, 
+.tree li .item:hover+ul::before, 
+.tree li .item:hover+ul ul::before{
+	border-color:  #94a0b4;
 }

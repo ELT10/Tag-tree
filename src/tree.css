@@ -15,6 +15,7 @@
 }
 
 .tree li {
+	min-width: 300px;
   align-items: center;
   text-align: center;
 	list-style-type: none;
@@ -119,6 +120,7 @@ bottom connector from last child*/
 }
 
 .tree li .item{
+	min-width:fit-content;
 	border: 1px solid #000;
 	text-decoration: none;
 	color: #000;

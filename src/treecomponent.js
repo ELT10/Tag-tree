@@ -54,7 +54,7 @@ const InitComponent = props => {
     let x = props.data;
     props.sales(x);
     return (
-        <ul>
+        <ul className="firstul">
             <li className="nodeone">
                 <input type="checkbox" id={"ch" + x} value={x} onClick={() => props.addChild(x)} />
                 <label htmlFor={"ch" + x} className="item"><span className="symbol"></span><span className="wadd">{x.slice(0, 5) + '.....' + x.slice(-5)}</span><span className="pcount">{props.state.salesData[x]}</span></label>

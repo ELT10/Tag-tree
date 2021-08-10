@@ -6,12 +6,24 @@
     position: absolute;
     left: 1%;
 }
-.tree ul {
+
+.firstul {
+	display: block!important;
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1);
+}
+.tree ul:not(.firstul) {
   float: left;
 	padding-left: 20px; position: relative;
 	transition: all 0.5s;
 	-webkit-transition: all 0.5s;
 	-moz-transition: all 0.5s;
+	display: none;
+    list-style: none;
+    opacity: 0;
+    visibility: hidden;
+    transform: scale(0);
 }
 
 .tree li {
@@ -51,7 +63,12 @@
 	bottom: auto; top: 50%;
 	border-top: 1px solid #000;
 }
-
+.tree ul li input:checked + label + ul{
+    display: block;
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1);
+}
 .tree ul li input:checked + label + ul li {
     display: flex;
     opacity: 1;

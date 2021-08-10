@@ -74,7 +74,7 @@ const ChildComponent = props => {
     return (
         <li>
             <input type="checkbox" id={"ch" + props.id} value={props.id} onClick={() => props.addChild(props.id)} />
-            <label htmlFor={"ch" + props.id} className="item"><span className="symbol"></span><span className="wadd">{props.id}</span><span className="pcount">{props.sales[props.id]}</span></label>
+            <label htmlFor={"ch" + props.id} className="item"><span className="symbol"></span><span className="wadd">{props.id.slice(0, 5) + '.....' + props.id.slice(-5)}</span><span className="pcount">{props.sales[props.id]}</span></label>
             <ul>
                 {props.data[props.id] ? test(props.data[props.id], props.addChild, props.data, props.sales, props.sfn) : ''}
             </ul>

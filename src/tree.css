@@ -57,6 +57,9 @@
     visibility: visible;
     transform: scale(1);
 }
+.tree ul li input:checked + label .symbol:before {
+   content:"-";
+}
 
 
 .tree ul li input {
@@ -94,10 +97,18 @@ bottom connector from last child*/
 }
 
 .pcount{
-    padding:10px;display: inline-block;background: black;color:white;
+    padding:4px 10px;display: inline-block;background: black;color:white;
     }
+	
+.symbol{
+    padding:4px 10px;display: inline-block;background: black;color:white;
+    }
+	.symbol:before{
+		content:"+";
+	}
 .wadd{
-    padding:10px;
+    padding:4px 10px;
+	
     }  
 /*Time to add rightward connectors from parents*/
 .tree ul ul::before{
@@ -114,11 +125,11 @@ bottom connector from last child*/
 	font-family: arial, verdana, tahoma;
 	font-size: 13px;
 	display: inline-block;
-	
+	font-weight: 800;
 	border-radius: 0px;
 	-webkit-border-radius: 0px;
 	-moz-border-radius: 0px;
-	
+	background-color: #e4e4e4;
 	transition: all 0.5s;
 	-webkit-transition: all 0.5s;
 	-moz-transition: all 0.5s;

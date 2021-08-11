@@ -117,6 +117,9 @@ bottom connector from last child*/
 .pcount{
     padding:4px 10px;display: inline-block;background: black;color:white;
     }
+.tokencount{
+    padding:4px 10px;display: inline-block;background:#585858;color:white;
+    }
 	
 .symbol{
     padding:4px 10px;display: inline-block;background: black;color:white;
